@@ -29,3 +29,12 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/windows
+debug/DW_console.exe
+debug/libgcc_s_dw2-1.dll
+debug/libstdc++-6.dll
+debug/libwinpthread-1.dll
+debug/main.o
+debug/Qt5Cored.dll
+Makefile
+Makefile.Debug
+Makefile.Release
