@@ -90,21 +90,53 @@ bool readWeightMatrix(vector<vector<double>> &fw)
     }
 }
 
-bool matrixProd(const vector<vector<double>> &fw, const vector<double> &fx, vector<double> &fp){
-    vector<double> px;
-    for (size_t j = 0; j < fw[0].size(); j++)
+bool matrixProd(const vector<vector<double>> &fw, const vector<double> &fx, vector<double> &fp)
+{
+    vector<double> ps;
+    vector<int> p;
+    vector<double> tempx = {1, -1, -1, -1};
+    double k = 0.05;
+
+    ofstream out("D:\\University\\DW\\DW\\debug\\ps.txt");
+
+    for (double x3 = -1; x3 <= 1; x3 += k)
     {
-        cout << j << endl;
-        px.push_back(0);
-        for (size_t k = 0; k < fx.size(); k++)
-            px[j] += fx[k] * fw[k][j];
+        for (double x2 = -1; x2 <= 1; x2 += k)
+        {
+            out << endl;
+            for (double x1 = -1; x1 <= 1 + k / 2.; x1 += k)
+            {
+                tempx[1] = x1;
+                tempx[2] = x2;
+                tempx[3] = x3;
+                ps.clear();
+                for (size_t j = 0; j < fw[0].size(); j++)
+                {
+                    ps.push_back(0);
+                    for (size_t l = 0; l < tempx.size(); l++)
+                        ps[j] += tempx[l] * fw[l][j];
 
-     }
+                 }
 
-    //вывод вектора px
+                //вывод вектора x
+                for (size_t j = 0; j < tempx.size(); j++)
+                    out << tempx[j] << " ";
+                out << "| ";
 
-    for (size_t j = 0; j < fp.size(); j++)
-        cout << px[j] << " ";
+                //расчет вектора p
+                p.clear();
+                for (size_t j = 0; j < ps.size(); j++){
+                    p.push_back( static_cast<int>(round(tanh(ps[j]))));
+                    out << p[j] << " ";
+                }
+
+                out << endl;
+            }
+        }
+    }
+    cout << "End" << endl;
+    out.close();
+
 }
 
 

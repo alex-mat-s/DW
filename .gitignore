@@ -39,3 +39,7 @@ Makefile
 Makefile.Debug
 Makefile.Release
 DW_console.pro.user
+DW_console.pro.user
+debug/ps.csv
+debug/ps.txt
+DW_console.pro.user
